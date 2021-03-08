@@ -29,16 +29,19 @@ const backImage = (tintColor = Colors.secondary.azure) => {
     headerBackTitleVisible: false,
     headerBackImage: () => (
       <Image
-        source={Images.icBack}
+        source={Images.ic_back}
+        resizeMode="contain"
         style={{
           marginLeft: Metrics.baseMargin,
-          //tintColor: tintColor
+          width: Metrics.widthRatio(20),
+          height: Metrics.widthRatio(16),
+          tintColor: Colors.primary.black,
         }}
       />
     ),
   };
 };
-const title = title => ({
+const title = (title) => ({
   title,
   headerTitleStyle: {
     color: Colors.secondary.azure,
@@ -49,12 +52,12 @@ const title = title => ({
     ),
   },
 });
-const defaultNavOptions = navOptions => {
+const defaultNavOptions = (navOptions) => {
   return {
     defaultNavigationOptions: ({navigation}) => navOptions,
   };
 };
-const navOptions = navOptions => {
+const navOptions = (navOptions) => {
   return {
     navigationOptions: ({navigation}) => navOptions,
   };

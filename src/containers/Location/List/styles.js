@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { Colors, Metrics, AppStyles } from "../../../theme";
+import {StyleSheet} from 'react-native';
+import {Colors, Metrics, AppStyles} from '../../../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -7,15 +7,12 @@ const styles = StyleSheet.create({
   },
   contentSec: {
     backgroundColor: Colors.primary.white,
-    height: "100%",
     paddingTop: Metrics.baseMargin,
-    alignItems: "center",
     paddingHorizontal: Metrics.baseMargin,
   },
   historyItemSec: {
     backgroundColor: Colors.secondary.pink,
-    width: "100%",
-    marginVertical: Metrics.baseMargin,
+    marginBottom: Metrics.baseMargin,
     borderRadius: Metrics.smallMargin,
     padding: Metrics.baseMargin,
   },
@@ -27,12 +24,12 @@ const styles = StyleSheet.create({
     color: Colors.primary.white,
   },
   logoSec: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingBottom: Metrics.xxDoubleBaseMargin,
   },
   avatarContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: Metrics.doubleBaseMargin,
   },
   btnStyle: {
@@ -41,26 +38,26 @@ const styles = StyleSheet.create({
     color: Colors.primary.white,
     borderRadius: Metrics.doubleBaseMargin,
     // width: "100%",
-    fontWeight: "700",
+    fontWeight: '700',
   },
   submitBtn: {
-    flexDirection: "column",
-    justifyContent: "center",
+    flexDirection: 'column',
+    justifyContent: 'center',
     paddingHorizontal: Metrics.xxDoubleBaseMargin + Metrics.baseMargin,
     // marginTop: 30,
   },
   searchContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: Metrics.xDoubleBaseMargin,
     marginBottom: Metrics.baseMargin,
   },
   itemContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     paddingHorizontal: Metrics.doubleBaseMargin,
     paddingVertical: Metrics.doubleBaseMargin,
     borderRadius: Metrics.doubleBaseMargin,
     shadowColor: Colors.xGray,
-    shadowOffset: { width: 0, height: 0 },
+    shadowOffset: {width: 0, height: 0},
     shadowOpacity: 0.4,
     shadowRadius: 10,
     elevation: 10,
@@ -85,7 +82,7 @@ const styles = StyleSheet.create({
   },
   serText: {
     width: 40,
-    textAlign: "center",
+    textAlign: 'center',
     ...AppStyles.gbLight(6, Colors.primary.black),
   },
   pickerStyle: {
@@ -93,7 +90,7 @@ const styles = StyleSheet.create({
     marginBottom: Metrics.baseMargin,
     paddingVertical: Metrics.baseMargin,
     paddingRight: Metrics.smallMargin,
-    alignSelf: "center",
+    alignSelf: 'center',
     marginRight: Metrics.smallMargin,
   },
   servicesStyle: {
@@ -103,9 +100,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: Metrics.smallMargin + Metrics.xSmallMargin,
     borderRadius: 20,
     backgroundColor: Colors.primary.white,
-    alignItems: "center",
+    alignItems: 'center',
     shadowColor: Colors.xGray,
-    shadowOffset: { width: 0, height: 0 },
+    shadowOffset: {width: 0, height: 0},
     shadowOpacity: 0.3,
     shadowRadius: 5,
     elevation: 5,

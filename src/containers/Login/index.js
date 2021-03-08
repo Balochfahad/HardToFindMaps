@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   View,
   Image,
@@ -10,33 +10,33 @@ import {
   Text,
   ActivityIndicator,
   ImageBackground,
-} from "react-native";
-import { USER, DUMP } from "../../actions/ActionTypes";
-import constant from "../../constants";
-import utility from "../../utility";
-import { NavigationContext } from "@react-navigation/native";
-import { push } from "../../services/NavigationService";
-import { LoginContext } from "../../";
-import { SafeAreaConsumer } from "react-native-safe-area-context";
-import { connect } from "react-redux";
+} from 'react-native';
+import {USER, DUMP} from '../../actions/ActionTypes';
+import constant from '../../constants';
+import utility from '../../utility';
+import {NavigationContext} from '@react-navigation/native';
+import {push} from '../../services/NavigationService';
+import {LoginContext} from '../../';
+import {SafeAreaConsumer} from 'react-native-safe-area-context';
+import {connect} from 'react-redux';
 import {
   TextFieldPlaceholder,
   FormHandler,
   AppTextButton,
-} from "../../reuseableComponents";
-import { request } from "../../actions/ServiceAction";
-import { INPUT_TYPES } from "../../reuseableComponents/FormHandler/Constants";
-import HttpServiceManager from "../../services/HttpServiceManager";
-import styles from "./styles";
-import AsyncStorage from "@react-native-community/async-storage";
-import { Images, Colors, AppStyles } from "../../theme";
-import { WithKeyboardListener } from "../../HOC";
+} from '../../reuseableComponents';
+import {request} from '../../actions/ServiceAction';
+import {INPUT_TYPES} from '../../reuseableComponents/FormHandler/Constants';
+import HttpServiceManager from '../../services/HttpServiceManager';
+import styles from './styles';
+import AsyncStorage from '@react-native-community/async-storage';
+import {Images, Colors, AppStyles} from '../../theme';
+import {WithKeyboardListener} from '../../HOC';
 import {
   AccessToken,
   GraphRequest,
   GraphRequestManager,
   LoginManager,
-} from "react-native-fbsdk";
+} from 'react-native-fbsdk';
 
 class Login extends Component {
   static contextType = NavigationContext;
@@ -57,97 +57,90 @@ class Login extends Component {
 
   onSubmit = (formData, setLogin, setRole) => {
     let payload = {
-      token: "U0FTQUlORk9URUNILUhBUkRUT0ZJTkRNQVBT",
+      token: 'U0FTQUlORk9URUNILUhBUkRUT0ZJTkRNQVBT',
       email: formData.email,
       password: formData.password,
     };
-
+    console.log('payload', payload);
     this.props.request(
       constant.login,
-      "post",
+      'post',
       payload,
       USER,
       true,
       (success) => this.onLoginSuccess(setLogin, setRole, success),
-      this.onLoginError
+      this.onLoginError,
     );
   };
   onLoginSuccess = (setLogin, setRole, success) => {
-    console.log("success", success);
-    // HttpServiceManager.getInstance().userToken = success.data.token;
+    console.log('success', success);
     setRole(success.data[0].Role);
     setLogin();
   };
   onLoginError = (error) => {
     if (error) {
-      utility.showFlashMessage("Login Failed", "danger");
+      utility.showFlashMessage('Login Failed', 'danger');
     }
   };
 
-  getInfoFromToken = (token) => {
+  getInfoFromToken = (token, setLogin, setRole) => {
     const PROFILE_REQUEST_PARAMS = {
       fields: {
-        string: "id,name,first_name,last_name",
+        string: 'id,name,first_name,last_name',
       },
     };
     const profileRequest = new GraphRequest(
-      "/me",
-      { token, parameters: PROFILE_REQUEST_PARAMS },
+      '/me',
+      {token, parameters: PROFILE_REQUEST_PARAMS},
       (error, user) => {
         if (error) {
-          console.log("login info has error: " + error);
+          console.log('login info has error: ' + error);
         } else {
-          this.setState({ userInfo: user });
-          console.log("result:", user);
+          this.setState({userInfo: user});
+          setLogin();
+          setRole('');
+          console.log('result:', user);
         }
-      }
+      },
     );
     new GraphRequestManager().addRequest(profileRequest).start();
   };
 
-  signInFacebook = () => {
-    LoginManager.logInWithPermissions(["public_profile"]).then(
+  signInFacebook = (setLogin, setRole) => {
+    LoginManager.logInWithPermissions(['public_profile']).then(
       (login) => {
         if (login.isCancelled) {
-          console.log("Login cancelled");
+          console.log('Login cancelled');
         } else {
           AccessToken.getCurrentAccessToken().then((data) => {
             const accessToken = data.accessToken.toString();
-            this.getInfoFromToken(accessToken);
+            this.getInfoFromToken(accessToken, setLogin, setRole);
           });
         }
       },
       (error) => {
-        console.log("Login fail with error: " + error);
-      }
+        console.log('Login fail with error: ' + error);
+      },
     );
   };
 
   render() {
-    const { is_visible } = this.state;
-    const { isKeyboardVisible, keyboardHeight, route } = this.props;
+    const {is_visible} = this.state;
+    const {isKeyboardVisible, keyboardHeight, route} = this.props;
     // console.log("secureTextEntry", is_visible, is_Role);
     return (
       <LoginContext.Consumer>
-        {({ isLogin, setLogin, setRole }) => {
+        {({isLogin, setLogin, setRole}) => {
           return (
-            <View
-              style={[
-                styles.container,
-                {
-                  marginBottom: isKeyboardVisible
-                    ? utility.isPlatformAndroid()
-                      ? 0
-                      : keyboardHeight
-                    : 0,
-                },
-              ]}
-            >
+            <ScrollView
+              style={{flex: 1}}
+              keyboardShouldPersistTaps="handled"
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{flexGrow: 1}}>
               <ImageBackground
                 source={Images.loginBg}
                 style={styles.image}
-                resizeMode="cover"
-              >
+                resizeMode="cover">
                 <View style={styles.overlay}>
                   <View>
                     <View style={styles.logoSec}>
@@ -194,7 +187,7 @@ class Login extends Component {
                       onPress={() => this.cbOnRequestLogin(setLogin, setRole)}
                     />
                     <AppTextButton
-                      onPress={this.signInFacebook}
+                      onPress={() => this.signInFacebook(setLogin, setRole)}
                       style={styles.fbButton}
                       title="FACEBOOK"
                     />
@@ -205,14 +198,13 @@ class Login extends Component {
                   <View style={styles.buttonSec2}>
                     <TouchableOpacity
                       style={styles.btnTxt}
-                      onPress={() => push("register")}
-                    >
+                      onPress={() => push('register')}>
                       <Text style={styles.text}>Create New Account</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
               </ImageBackground>
-            </View>
+            </ScrollView>
           );
         }}
       </LoginContext.Consumer>
@@ -220,9 +212,6 @@ class Login extends Component {
   }
 }
 
-const actions = { request };
+const actions = {request};
 const mapStateToProps = ({}) => ({});
-export default connect(
-  mapStateToProps,
-  actions
-)(WithKeyboardListener(Login));
+export default connect(mapStateToProps, actions)(WithKeyboardListener(Login));

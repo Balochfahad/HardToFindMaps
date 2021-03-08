@@ -5,12 +5,12 @@
 //  Created by Retrocube on 10/4/2019, 9:37:25 AM.
 //  Copyright © 2019 Retrocube. All rights reserved.
 //
-import axios from "axios";
-import { showSpinner, hideSpinner } from "react-native-globalspinner";
-import { FlashMessage } from "../reuseableComponents";
+import axios from 'axios';
+import {showSpinner, hideSpinner} from 'react-native-globalspinner';
+import {FlashMessage} from '../reuseableComponents';
 
 const log = (...msgs) => {
-  if (process.env.NODE_ENV === "development") console.log(...msgs);
+  if (process.env.NODE_ENV === 'development') console.log(...msgs);
 };
 
 global.log = log;
@@ -18,7 +18,7 @@ global.log = log;
 class HttpServiceManager {
   static myInstance = null;
   static axiosInstance = null;
-  userToken = "";
+  userToken = '';
   static getInstance() {
     if (HttpServiceManager.myInstance == null) {
       HttpServiceManager.myInstance = new HttpServiceManager();
@@ -33,17 +33,17 @@ class HttpServiceManager {
       headers: authHeader,
     });
     HttpServiceManager.getInstance().axiosInstance.interceptors.request.use(
-      function(config) {
-        config.headers["Authorization"] =
+      function (config) {
+        config.headers['Authorization'] =
           HttpServiceManager.getInstance().userToken &&
           `Bearer ${HttpServiceManager.getInstance().userToken}`;
 
         return config;
       },
-      function(error) {
-        global.log("header Config err:", error);
+      function (error) {
+        global.log('header Config err:', error);
         return error;
-      }
+      },
     );
   };
 
@@ -66,7 +66,7 @@ class HttpServiceManager {
       });
     } else {
       console.warn(
-        'HttpServiceManager method "initialize" is not called, call it in App.js componentDidMount'
+        'HttpServiceManager method "initialize" is not called, call it in App.js componentDidMount',
       );
     }
   };
@@ -81,7 +81,7 @@ class HttpServiceManager {
       });
     } else {
       console.warn(
-        'HttpServiceManager method "initialize" is not called, call it in App.js componentDidMount'
+        'HttpServiceManager method "initialize" is not called, call it in App.js componentDidMount',
       );
     }
   };
@@ -90,7 +90,7 @@ class HttpServiceManager {
     if (showHud) {
       showSpinner();
     }
-    const data = method === "get" ? null : parameters;
+    const data = method === 'get' ? null : parameters;
     if (HttpServiceManager.getInstance().axiosInstance !== null) {
       return new Promise((resolve, reject) => {
         let reqParam = {
@@ -99,21 +99,21 @@ class HttpServiceManager {
           data: data,
           params: parameters,
         };
-        // global.log(
-        //   "--------------------------------------------------------------------------------------",
-        //   "\n- REQUEST : ",
-        //   reqParam,
-        //   "\n--------------------------------------------------------------------------------------"
-        // );
+        global.log(
+          '--------------------------------------------------------------------------------------',
+          '\n- REQUEST : ',
+          reqParam,
+          '\n--------------------------------------------------------------------------------------',
+        );
         HttpServiceManager.getInstance()
           .axiosInstance.request(reqParam)
           .then((response) => {
-            // global.log(
-            //   "--------------------------------------------------------------------------------------",
-            //   "\n- RESPONSE : ",
-            //   response,
-            //   "\n--------------------------------------------------------------------------------------"
-            // );
+            global.log(
+              '--------------------------------------------------------------------------------------',
+              '\n- RESPONSE : ',
+              response,
+              '\n--------------------------------------------------------------------------------------',
+            );
             if (response.status === 200) {
               resolve({
                 data: response.data.data,
@@ -129,17 +129,17 @@ class HttpServiceManager {
       });
     } else {
       console.warn(
-        'HttpServiceManager method "initialize" is not called, call it in App.js componentDidMount'
+        'HttpServiceManager method "initialize" is not called, call it in App.js componentDidMount',
       );
     }
   };
 
   static checkError = (error) => {
     console.log(
-      "--------------------------------------------------------------------------------------",
-      "\n- ERROR : ",
+      '--------------------------------------------------------------------------------------',
+      '\n- ERROR : ',
       error.response,
-      "\n--------------------------------------------------------------------------------------"
+      '\n--------------------------------------------------------------------------------------',
     );
     var showError = error.message;
     if (error.response) {
@@ -152,11 +152,11 @@ class HttpServiceManager {
           var values = Object.keys(data).map((key) => {
             return data[key];
           });
-          showError = "• " + values.join("\n• ");
+          showError = '• ' + values.join('\n• ');
         }
       }
     }
-    FlashMessage({ message: showError });
+    FlashMessage({message: showError});
     return error.response;
   };
 }

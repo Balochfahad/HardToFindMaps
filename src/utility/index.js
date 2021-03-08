@@ -5,14 +5,14 @@
 //  Created by Retrocube on 10/4/2019, 9:49:50 AM.
 //  Copyright © 2019 Retrocube. All rights reserved.
 //
-import { Alert, Linking } from "react-native";
-import moment from "moment";
-import { FlashMessage } from "../reuseableComponents";
-import { EventBusSingleton } from "light-event-bus";
+import {Alert, Linking} from 'react-native';
+import moment from 'moment';
+import {FlashMessage} from '../reuseableComponents';
+// import { EventBusSingleton } from "light-event-bus";
 
-const DATE_FORMAT = "DD, MMM YYYY";
-const DATE_FORMAT_MON = "MMMM, DD YYYY";
-let drawerRef = "";
+const DATE_FORMAT = 'DD, MMM YYYY';
+const DATE_FORMAT_MON = 'MMMM, DD YYYY';
+let drawerRef = '';
 
 class utility {
   EdgePadding = {
@@ -21,8 +21,8 @@ class utility {
     bottom: 0,
     left: 0,
   };
-  isPlatformAndroid = () => Platform.OS === "android";
-  isPlatformIOS = () => Platform.OS === "ios";
+  isPlatformAndroid = () => Platform.OS === 'android';
+  isPlatformIOS = () => Platform.OS === 'ios';
   focusOnMapCoordinates = (map, markers, edgePadding = this.EdgePadding) => {
     options = {
       edgePadding: edgePadding,
@@ -39,7 +39,7 @@ class utility {
           return Linking.openURL(url);
         }
       })
-      .catch((err) => console.error("An error occurred", err));
+      .catch((err) => console.error('An error occurred', err));
   }
   animateToFirstLocationCentered = (map, points, duration = 2000) => {
     var minX, maxX, minY, maxY;
@@ -72,11 +72,11 @@ class utility {
         latitudeDelta: deltaX * 2.5,
         longitudeDelta: deltaY * 2.5,
       },
-      duration
+      duration,
     );
   };
 
-  openDrawer = () => EventBusSingleton.publish("show_drawer");
+  // openDrawer = () => EventBusSingleton.publish("show_drawer");
   getStoreRef = () => storeRef;
   setStoreRef = (ref) => (storeRef = ref);
   setDrawerRef = (ref) => (drawerRef = ref);
@@ -94,12 +94,12 @@ class utility {
       title,
       description,
       [
-        { text: "OK", onPress: onPress },
-        { text: "Cancel", onPress: onPressCancel },
+        {text: 'OK', onPress: onPress},
+        {text: 'Cancel', onPress: onPressCancel},
       ],
       {
         cancelable: false,
-      }
+      },
     );
   };
   getDate = (date) => {
@@ -108,8 +108,8 @@ class utility {
   getDateMonth = (date) => {
     return moment(date).format(DATE_FORMAT_MON);
   };
-  showFlashMessage = (message = "Enter a message to show", type = "danger") => {
-    FlashMessage({ message, type });
+  showFlashMessage = (message = 'Enter a message to show', type = 'danger') => {
+    FlashMessage({message, type});
   };
 }
 

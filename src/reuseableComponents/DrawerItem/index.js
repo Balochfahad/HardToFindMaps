@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, {PureComponent} from 'react';
 import {
   StyleSheet,
   Image,
@@ -9,16 +9,16 @@ import {
   Animated,
   Easing,
   TouchableWithoutFeedback,
-} from "react-native";
-import { connect } from "react-redux";
-import { EventBusSingleton } from "light-event-bus";
-import { logout } from "../../actions/ServiceAction";
-import ButtonView from "../ButtonView";
-import { push, reset } from "../../services/NavigationService";
-import LoginContext from "../../";
-import store from "../../store";
-import utility from "../../utility";
-import { Metrics, Colors, AppStyles, Images } from "../../theme";
+} from 'react-native';
+import {connect} from 'react-redux';
+// import { EventBusSingleton } from "light-event-bus";
+import {logout} from '../../actions/ServiceAction';
+import ButtonView from '../ButtonView';
+import {push, reset} from '../../services/NavigationService';
+import LoginContext from '../../';
+import store from '../../store';
+import utility from '../../utility';
+import {Metrics, Colors, AppStyles, Images} from '../../theme';
 
 class DrawerItem extends PureComponent {
   constructor(props) {
@@ -30,10 +30,10 @@ class DrawerItem extends PureComponent {
   }
 
   componentDidMount() {
-    this.subscription = EventBusSingleton.subscribe("show_drawer", () => {
-      this.showModal();
-      //this.toggle();
-    });
+    // this.subscription = EventBusSingleton.subscribe("show_drawer", () => {
+    //   this.showModal();
+    //   //this.toggle();
+    // });
   }
 
   // toggle = () => {
@@ -46,64 +46,58 @@ class DrawerItem extends PureComponent {
   //   }).start();
   // };
 
-  componentWillUnmount() {
-    this.subscription &&
-      this.subscription.unsubscribe &&
-      this.subscription.unsubscribe();
-  }
-
-  showModal = () => this.setState({ isModalVisible: true });
-  hideModal = () => this.setState({ isModalVisible: false });
+  // showModal = () => this.setState({isModalVisible: true});
+  // hideModal = () => this.setState({isModalVisible: false});
 
   render() {
-    const { isModalVisible } = this.state;
-    const { user, setLogin } = this.props;
-    console.log("user1", user);
-    console.log("setLogin", setLogin);
+    const {isModalVisible} = this.state;
+    const {user, setLogin} = this.props;
+    console.log('user1', user);
+    console.log('setLogin', setLogin);
 
     const arr = [
       {
         img: Images.headerImage,
-        name: "",
+        name: '',
         route: () => {
           this.hideModal();
         },
       },
       {
         img: Images.ic_dashboard,
-        name: "Dashboard",
+        name: 'Dashboard',
         route: () => {
-          push("dashboard");
+          push('dashboard');
           this.hideModal();
         },
       },
       {
         img: Images.ic_setting,
-        name: "History",
+        name: 'History',
         route: () => {
-          push("history");
+          push('history');
           this.hideModal();
         },
       },
       {
         img: Images.ic_term_condition,
-        name: "Favourite",
+        name: 'Favourite',
         route: () => {
-          push("favorites");
+          push('favorites');
           this.hideModal();
         },
       },
       {
         img: Images.ic_profile,
-        name: "My Profile",
+        name: 'My Profile',
         route: () => {
-          push("profile");
+          push('profile');
           this.hideModal();
         },
       },
       {
         img: Images.ic_logout,
-        name: "Log Out",
+        name: 'Log Out',
         route: () => {
           this.hideModal();
           utility.getStoreRef().dispatch(logout());
@@ -119,15 +113,13 @@ class DrawerItem extends PureComponent {
         animationType="fade"
         transparent={true}
         visible={isModalVisible}
-        onRequestClose={this.hideModal}
-      >
+        onRequestClose={this.hideModal}>
         <TouchableWithoutFeedback onPress={this.hideModal}>
           <View
             style={{
               flex: 1,
-              backgroundColor: "rgba(0,0,0,0.6)",
-            }}
-          >
+              backgroundColor: 'rgba(0,0,0,0.6)',
+            }}>
             <View
               style={[
                 styles.renderStyle,
@@ -136,16 +128,14 @@ class DrawerItem extends PureComponent {
                     ? 5
                     : Metrics.xDoubleBaseMargin,
                 },
-              ]}
-            >
+              ]}>
               {data.map((item, index) => {
                 return (
                   <ButtonView
                     style={{
                       width: Metrics.screenWidth / 2 + Metrics.baseMargin,
                     }}
-                    onPress={item.route}
-                  >
+                    onPress={item.route}>
                     <Animated.View style={[styles.drawerView, {}]}>
                       <View
                         style={[
@@ -164,8 +154,7 @@ class DrawerItem extends PureComponent {
                                 ? Metrics.doubleBaseMargin
                                 : 0,
                           },
-                        ]}
-                      >
+                        ]}>
                         <Image
                           style={styles.imgWidth}
                           resizeMode="contain"
@@ -190,8 +179,8 @@ class DrawerItem extends PureComponent {
 
 const styles = StyleSheet.create({
   drawerView: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   renderStyle: {
     marginLeft: Metrics.baseMargin,
@@ -214,8 +203,5 @@ const styles = StyleSheet.create({
 });
 
 const actions = {};
-const mapStateToProps = ({ user }) => ({ user: user.data });
-export default connect(
-  mapStateToProps,
-  actions
-)(DrawerItem);
+const mapStateToProps = ({user}) => ({user: user.data});
+export default connect(mapStateToProps, actions)(DrawerItem);

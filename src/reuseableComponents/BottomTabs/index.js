@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, {PureComponent} from 'react';
 import {
   StyleSheet,
   Image,
@@ -9,16 +9,15 @@ import {
   Animated,
   Easing,
   TouchableWithoutFeedback,
-} from "react-native";
-import { connect } from "react-redux";
-import { EventBusSingleton } from "light-event-bus";
-import { logout } from "../../actions/ServiceAction";
-import ButtonView from "../ButtonView";
-import { push, reset } from "../../services/NavigationService";
-import LoginContext from "../../";
-import store from "../../store";
-import utility from "../../utility";
-import { Metrics, Colors, AppStyles, Images } from "../../theme";
+} from 'react-native';
+import {connect} from 'react-redux';
+import {logout} from '../../actions/ServiceAction';
+import ButtonView from '../ButtonView';
+import {push, reset} from '../../services/NavigationService';
+import LoginContext from '../../';
+import store from '../../store';
+import utility from '../../utility';
+import {Metrics, Colors, AppStyles, Images} from '../../theme';
 
 class BottomTabs extends PureComponent {
   constructor(props) {
@@ -26,53 +25,53 @@ class BottomTabs extends PureComponent {
   }
 
   render() {
-    const { user, setLogin } = this.props;
-    console.log("user1", user);
-    console.log("setLogin", setLogin);
+    const {user, setLogin} = this.props;
+    console.log('user1', user);
+    console.log('setLogin', setLogin);
 
     const arr = [
       {
         img: Images.headerImage,
-        name: "",
+        name: '',
         route: () => {
           this.hideModal();
         },
       },
       {
         img: Images.ic_dashboard,
-        name: "Dashboard",
+        name: 'Dashboard',
         route: () => {
-          push("dashboard");
+          push('dashboard');
           this.hideModal();
         },
       },
       {
         img: Images.ic_setting,
-        name: "History",
+        name: 'History',
         route: () => {
-          push("history");
+          push('history');
           this.hideModal();
         },
       },
       {
         img: Images.ic_term_condition,
-        name: "Favourite",
+        name: 'Favourite',
         route: () => {
-          push("favorites");
+          push('favorites');
           this.hideModal();
         },
       },
       {
         img: Images.ic_profile,
-        name: "My Profile",
+        name: 'My Profile',
         route: () => {
-          push("profile");
+          push('profile');
           this.hideModal();
         },
       },
       {
         img: Images.ic_logout,
-        name: "Log Out",
+        name: 'Log Out',
         route: () => {
           this.hideModal();
           utility.getStoreRef().dispatch(logout());
@@ -86,18 +85,18 @@ class BottomTabs extends PureComponent {
     return (
       <View style={styles.tabContainer}>
         <View style={styles.tabInnerContainer}>
-          <TouchableOpacity onPress={() => push("dashboard")}>
+          <TouchableOpacity onPress={() => push('dashboard')}>
             <View style={styles.tabSec}>
               <Image style={styles.imgWidth} source={Images.ic_dashboard} />
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => push("history")}>
+          <TouchableOpacity onPress={() => push('history')}>
             <View style={styles.tabSec}>
               <Image style={styles.imgWidth} source={Images.ic_setting} />
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => push("favorites")}>
+          <TouchableOpacity onPress={() => push('favorites')}>
             <View style={styles.tabSec}>
               <Image
                 style={styles.imgWidth}
@@ -105,12 +104,13 @@ class BottomTabs extends PureComponent {
               />
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => push("profile")}>
+          <TouchableOpacity onPress={() => push('profile')}>
             <View style={styles.tabSec}>
               <Image style={styles.imgWidth} source={Images.ic_profile} />
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => push("logout")}>
+          <TouchableOpacity
+            onPress={() => utility.getStoreRef().dispatch(logout())}>
             <View style={styles.tabSec}>
               <Image style={styles.imgWidth} source={Images.ic_logout} />
             </View>
@@ -123,17 +123,17 @@ class BottomTabs extends PureComponent {
 
 const styles = StyleSheet.create({
   tabContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     borderTopWidth: 0.5,
     borderTopColor: Colors.shadow,
     backgroundColor: Colors.cGray,
-    width: "100%",
+    width: '100%',
   },
   tabInnerContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   tabSec: {
     paddingVertical: Metrics.doubleBaseMargin,
@@ -162,8 +162,5 @@ const styles = StyleSheet.create({
 });
 
 const actions = {};
-const mapStateToProps = ({ user }) => ({ user: user.data });
-export default connect(
-  mapStateToProps,
-  actions
-)(BottomTabs);
+const mapStateToProps = ({user}) => ({user: user.data});
+export default connect(mapStateToProps, actions)(BottomTabs);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   View,
   Image,
@@ -9,27 +9,27 @@ import {
   TouchableWithoutFeedback,
   Text,
   ActivityIndicator,
-} from "react-native";
-import { USER, DUMP } from "../../actions/ActionTypes";
-import constant from "../../constants";
-import utility from "../../utility";
-import { NavigationContext } from "@react-navigation/native";
-import { push } from "../../services/NavigationService";
-import { SafeAreaConsumer } from "react-native-safe-area-context";
-import { connect } from "react-redux";
+} from 'react-native';
+import {USER, DUMP} from '../../actions/ActionTypes';
+import constant from '../../constants';
+import utility from '../../utility';
+import {NavigationContext} from '@react-navigation/native';
+import {push} from '../../services/NavigationService';
+import {SafeAreaConsumer} from 'react-native-safe-area-context';
+import {connect} from 'react-redux';
 import {
   TextFieldPlaceholder,
   FormHandler,
   AppTextButton,
   Header,
-} from "../../reuseableComponents";
-import { request } from "../../actions/ServiceAction";
-import { INPUT_TYPES } from "../../reuseableComponents/FormHandler/Constants";
-import HttpServiceManager from "../../services/HttpServiceManager";
-import styles from "./styles";
-import AsyncStorage from "@react-native-community/async-storage";
-import { Images, Colors, AppStyles } from "../../theme";
-import { WithKeyboardListener } from "../../HOC";
+} from '../../reuseableComponents';
+import {request} from '../../actions/ServiceAction';
+import {INPUT_TYPES} from '../../reuseableComponents/FormHandler/Constants';
+import HttpServiceManager from '../../services/HttpServiceManager';
+import styles from './styles';
+import AsyncStorage from '@react-native-community/async-storage';
+import {Images, Colors, AppStyles} from '../../theme';
+import {WithKeyboardListener} from '../../HOC';
 
 class ForgetPassword extends Component {
   constructor(props) {
@@ -44,14 +44,14 @@ class ForgetPassword extends Component {
 
     this.props.request(
       constant.forgot_password,
-      "POST",
+      'POST',
       payload,
       DUMP,
       true,
       () => {
-        push("login");
+        push('login');
       },
-      () => {}
+      () => {},
     );
   };
 
@@ -63,7 +63,7 @@ class ForgetPassword extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header centerIcon={} Left BackBtn />
+        <Header Left BackBtn />
 
         <View style={styles.sectionTitle}>
           <Text style={styles.subText}>Enter your Email below</Text>
@@ -91,9 +91,6 @@ class ForgetPassword extends Component {
   }
 }
 
-const actions = { request };
+const actions = {request};
 const mapStateToProps = ({}) => ({});
-export default connect(
-  mapStateToProps,
-  actions
-)(ForgetPassword);
+export default connect(mapStateToProps, actions)(ForgetPassword);

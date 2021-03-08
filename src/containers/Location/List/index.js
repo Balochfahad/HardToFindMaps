@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   View,
   Image,
@@ -10,27 +10,26 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedbackBase,
   FlatList,
-} from "react-native";
-import { USER, DUMP, RECENT_SERVICES_LIST } from "../../../actions/ActionTypes";
-import { EventBusSingleton } from "light-event-bus";
-import constant from "../../../constants";
-import utility from "../../../utility";
-import { push, pop } from "../../../services/NavigationService";
-import { connect } from "react-redux";
-import { request } from "../../../actions/ServiceAction";
-import { INPUT_TYPES } from "../../../reuseableComponents/FormHandler/Constants";
-import HttpServiceManager from "../../../services/HttpServiceManager";
-import { NavigationContext } from "@react-navigation/native";
-import { WithKeyboardListener } from "../../../HOC";
+} from 'react-native';
+import {USER, DUMP, RECENT_SERVICES_LIST} from '../../../actions/ActionTypes';
+import constant from '../../../constants';
+import utility from '../../../utility';
+import {push, pop} from '../../../services/NavigationService';
+import {connect} from 'react-redux';
+import {request} from '../../../actions/ServiceAction';
+import {INPUT_TYPES} from '../../../reuseableComponents/FormHandler/Constants';
+import HttpServiceManager from '../../../services/HttpServiceManager';
+import {NavigationContext} from '@react-navigation/native';
+import {WithKeyboardListener} from '../../../HOC';
 import {
   Header,
   AppTextButton,
   Avatar,
   FormHandler,
   TextFieldPlaceholder,
-} from "../../../reuseableComponents";
-import styles from "./styles";
-import { Images, Metrics, Colors, AppStyles } from "../../../theme";
+} from '../../../reuseableComponents';
+import styles from './styles';
+import {Images, Metrics, Colors, AppStyles} from '../../../theme';
 
 class LocationList extends Component {
   static contextType = NavigationContext;
@@ -42,15 +41,15 @@ class LocationList extends Component {
   }
 
   componentDidMount() {
-    const { route } = this.props;
+    const {route} = this.props;
     const locations = route.params.locations;
-    this.setState({ list: locations });
+    this.setState({list: locations});
     // Id && this.onMerchantQuoteDetailRequest(Id);
   }
 
   render() {
-    const { user } = this.props;
-    const { list } = this.state;
+    const {user} = this.props;
+    const {list} = this.state;
 
     return (
       <View style={styles.container}>
@@ -63,44 +62,41 @@ class LocationList extends Component {
           Menu
           Left
         />
-        <View style={styles.contentSec}>
+        <ScrollView
+          style={styles.contentSec}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{flexGrow: 1}}>
           {list.length ? (
             list.map((item) => {
               return (
                 <TouchableOpacity
+                  style={styles.historyItemSec}
                   onPress={() =>
-                    push("locationDetail", {
+                    push('locationDetail', {
                       detail: item,
                     })
-                  }
-                >
-                  <View style={styles.historyItemSec}>
-                    <Text style={styles.historyItemTitle}>
-                      {item.Apartment}
-                    </Text>
-                    <Text style={styles.historyItemDesc}>
-                      {item.StreetAddress}, {item.City}, {item.State}{" "}
-                      {item.ZipCode}
-                      {item.Country}
-                    </Text>
-                  </View>
+                  }>
+                  <Text style={styles.historyItemTitle}>{item.Apartment}</Text>
+                  <Text style={styles.historyItemDesc}>
+                    {item.StreetAddress}, {item.City}, {item.State}{' '}
+                    {item.ZipCode}
+                    {item.Country}
+                  </Text>
                 </TouchableOpacity>
               );
             })
           ) : (
             <Text>"No Location Found"</Text>
           )}
-        </View>
+        </ScrollView>
       </View>
     );
   }
 }
 
-const actions = { request };
-const mapStateToProps = ({ user }) => ({
+const actions = {request};
+const mapStateToProps = ({user}) => ({
   user: user.data,
 });
-export default connect(
-  mapStateToProps,
-  actions
-)(LocationList);
+export default connect(mapStateToProps, actions)(LocationList);

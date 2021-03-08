@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   View,
   Image,
@@ -9,14 +9,14 @@ import {
   TouchableWithoutFeedback,
   Text,
   ActivityIndicator,
-} from "react-native";
-import { USER, DUMP } from "../../../actions/ActionTypes";
-import constant from "../../../constants";
-import utility from "../../../utility";
-import { NavigationContext } from "@react-navigation/native";
-import { push } from "../../../services/NavigationService";
-import { SafeAreaConsumer } from "react-native-safe-area-context";
-import { connect } from "react-redux";
+} from 'react-native';
+import {USER, DUMP} from '../../../actions/ActionTypes';
+import constant from '../../../constants';
+import utility from '../../../utility';
+import {NavigationContext} from '@react-navigation/native';
+import {push} from '../../../services/NavigationService';
+import {SafeAreaConsumer} from 'react-native-safe-area-context';
+import {connect} from 'react-redux';
 import {
   TextFieldPlaceholder,
   FormHandler,
@@ -25,24 +25,24 @@ import {
   AddProfileItem,
   BottomActionSheet,
   Avatar,
-} from "../../../reuseableComponents";
+} from '../../../reuseableComponents';
 import {
   TopHeader,
   TopBanner,
   InputField,
   LoaderComp,
-} from "../../../components";
-import { request, success } from "../../../actions/ServiceAction";
+} from '../../../components';
+import {request, success} from '../../../actions/ServiceAction';
 import {
   selectCameraImage,
   selectSingleImage,
-} from "../../../services/PickerUtiles";
-import { INPUT_TYPES } from "../../../reuseableComponents/FormHandler/Constants";
-import HttpServiceManager from "../../../services/HttpServiceManager";
-import styles from "./styles";
-import AsyncStorage from "@react-native-community/async-storage";
-import { Images, Colors, AppStyles, Metrics } from "../../../theme";
-import { WithKeyboardListener } from "../../../HOC";
+} from '../../../services/PickerUtiles';
+import {INPUT_TYPES} from '../../../reuseableComponents/FormHandler/Constants';
+import HttpServiceManager from '../../../services/HttpServiceManager';
+import styles from './styles';
+import AsyncStorage from '@react-native-community/async-storage';
+import {Images, Colors, AppStyles, Metrics} from '../../../theme';
+import {WithKeyboardListener} from '../../../HOC';
 
 class Profile extends Component {
   constructor(props) {
@@ -62,11 +62,11 @@ class Profile extends Component {
   };
 
   onSubmit = (formData) => {
-    const { avatar, display_picture, isFetching } = this.state;
-    const { user } = this.props;
+    const {avatar, display_picture, isFetching} = this.state;
+    const {user} = this.props;
 
     let payload = {
-      token: "U0FTQUlORk9URUNILUhBUkRUT0ZJTkRNQVBT",
+      token: 'U0FTQUlORk9URUNILUhBUkRUT0ZJTkRNQVBT',
       user_id: user.id,
       name: formData.name,
       email: formData.email,
@@ -76,34 +76,30 @@ class Profile extends Component {
 
     this.props.request(
       constant.updateProfile,
-      "post",
+      'post',
       payload,
       DUMP,
       true,
       (success) => this.onProfileUpdateSuccess(success),
-      this.onSignUpError
+      this.onSignUpError,
     );
   };
 
   onProfileUpdateSuccess = (success) => {
-    utility.showFlashMessage("Profile Updated Successfully!", "success");
+    utility.showFlashMessage('Profile Updated Successfully!', 'success');
   };
 
   render() {
-    const { user } = this.props;
-    const { avatar, display_picture, isFetching } = this.state;
+    const {user} = this.props;
+    const {avatar, display_picture, isFetching} = this.state;
     // console.log("avatar", avatar);
     return (
-      <View style={styles.container}>
+      <ScrollView
+        style={{flex: 1}}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{flexGrow: 1}}>
         {/*isFetching && <LoaderComp />*/}
-        <Header
-          centerText="Profile"
-          Left
-          Menu
-          onMenuPress={() => {}}
-          onRightPress={() => {}}
-          rightIcon={Images.ic_msg}
-        />
 
         <View style={styles.buttonSec}>
           <View style={styles.formStyle}>
@@ -164,14 +160,11 @@ class Profile extends Component {
             <AppTextButton title="Save" style={styles.btnStyle} />
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
 
-const actions = { request, success };
-const mapStateToProps = ({ user }) => ({ user: user.data });
-export default connect(
-  mapStateToProps,
-  actions
-)(WithKeyboardListener(Profile));
+const actions = {request, success};
+const mapStateToProps = ({user}) => ({user: user.data});
+export default connect(mapStateToProps, actions)(WithKeyboardListener(Profile));
