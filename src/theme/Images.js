@@ -20,6 +20,8 @@ const ic_msg = require("../assets/icons/ic_msg/ic_msg.png");
 const arrow_down = require("../assets/icons/ic_arrow_down/arrow_down.png");
 const ic_search = require("../assets/icons/ic_search/ic_search.png");
 const ic_textIcon = require("../assets/icons/textIcon/ic_search.png");
+// const ic_favorite_in = require("../assets/icons/favorite/inactive.png");
+const ic_favorite_ac = require("../assets/icons/favorite/active.png");
 
 //DashBoard
 
@@ -50,34 +52,53 @@ const d_m_service = require("../assets/icons/d_m_service/ic_services.png");
 const d_scheduling = require("../assets/icons/d_scheduling/ic_sched.png");
 
 //DashBoard
-const ic_dashboard = require("../assets/icons/drawer/dashboard.png");
-const ic_profile = require("../assets/icons/drawer/profile.png");
-const ic_setting = require("../assets/icons/drawer/setting.png");
-const ic_term_condition = require("../assets/icons/drawer/term_condition.png");
-const ic_logout = require("../assets/icons/drawer/logout.png");
 const ic_m_menu = require("../assets/icons/ic_m_menu/ic_menu.png");
+const close_white = require("../assets/icons/close_white/close_white.png");
 
 //Drawer M
+
+// Bottom Tabs
+const ic_home_active = require("../assets/icons/drawer/home_active.png");
+const ic_home_in = require("../assets/icons/drawer/home.png");
+const ic_favorite_active = require("../assets/icons/drawer/favourites_active.png");
+const ic_favorite_in = require("../assets/icons/drawer/favourites.png");
+const ic_history_active = require("../assets/icons/drawer/history_active.png");
+const ic_history_in = require("../assets/icons/drawer/history.png");
+const ic_logout_active = require("../assets/icons/drawer/logout_active.png");
+const ic_logout_in = require("../assets/icons/drawer/logout.png");
+const ic_user_active = require("../assets/icons/drawer/userinfo_active.png");
+const ic_user_in = require("../assets/icons/drawer/userinfo.png");
+const icSearchCross = require("../assets/icons/searchCross/icSearchCross.png");
+
+//================
+
+//Hard to find Maps tab bar
+const home_active = require("../assets/icons/menu_d/home.png");
+const home_in = require("../assets/icons/menu_d/home_in.png");
 
 const m_dashboard = require("../assets/icons/m_drawer/dashboard.png");
 const m_logout = require("../assets/icons/m_drawer/logout.png");
 const m_profile = require("../assets/icons/m_drawer/profile.png");
 const m_setting = require("../assets/icons/m_drawer/setting.png");
 const m_term = require("../assets/icons/m_drawer/term.png");
+const m_location = require("../assets/icons/m_location/location1.png");
+const g_location = require("../assets/icons/m_location/location.png");
 
 export default {
   m_dashboard,
+  home_active,
+  home_in,
   m_logout,
   m_profile,
   m_setting,
   m_term,
   ic_location,
-  ic_dashboard,
+  g_location,
+  icSearchCross,
+  m_location,
   ic_m_menu,
-  ic_profile,
-  ic_setting,
-  ic_term_condition,
-  ic_logout,
+  close_white,
+
   ic_s_provider,
   ic_s_quote,
   ic_s_contact,
@@ -106,6 +127,17 @@ export default {
   d_invoices,
   d_location,
   d_quotes,
+  ic_favorite_in,
+  ic_home_active,
+  ic_home_in,
+  ic_history_active,
+  ic_history_in,
+  ic_user_active,
+  ic_user_in,
+  ic_favorite_active,
+  ic_logout_active,
+  ic_logout_in,
+  ic_favorite_ac,
   d_services,
   ic_picker,
   ic_textIcon,

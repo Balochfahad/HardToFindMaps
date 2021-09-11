@@ -85,6 +85,8 @@ export default class TextfieldPlaceholder extends Component {
 
   setFocus = () => this.textInput.focus();
 
+  onClearInput = () => this.textInput.clear();
+
   handleFocus = () => {
     this.props.onFocus();
   };

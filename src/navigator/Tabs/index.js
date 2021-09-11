@@ -1,11 +1,17 @@
-import React from 'react';
-import {TouchableOpacity, Image} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
-import {Dashboard, Favorites, History, Profile, Logout} from '../../containers';
-import {Images, Metrics, Colors, Fonts, AppStyles} from '../../theme';
-import {toggleDrawer} from '../../services/NavigationService';
-import utility from '../../utility';
+import React from "react";
+import { TouchableOpacity, Image } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import {
+  Dashboard,
+  Favorites,
+  History,
+  Profile,
+  Logout,
+} from "../../containers";
+import { Images, Metrics, Colors, Fonts, AppStyles } from "../../theme";
+import { toggleDrawer } from "../../services/NavigationService";
+import utility from "../../utility";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -19,7 +25,7 @@ const defaultScreenOptions = (transparent = false) => {
     },
 
     headerTransparent: transparent,
-    headerTitleAlign: 'center',
+    headerTitleAlign: "center",
     headerStyle: {
       backgroundColor: Colors.primary.theme,
       borderBottomWidth: 0,
@@ -34,7 +40,7 @@ const tabBarOptions = () => {
     //   inactiveTintColor: Colors.icon.white,
     //showLabel: false,
     keyboardHidesTabBar: true, //If true hide the tab bar when keyboard opens.
-    safeAreaInsets: {bottom: 0},
+    safeAreaInsets: { bottom: 0 },
     style: {
       backgroundColor: Colors.primary.white,
       height: Metrics.heightRatio(60),
@@ -57,32 +63,32 @@ const tabBarOptions = () => {
 
 //====================================================================
 
-const TabBarIcon = ({route}) => ({
-  tabBarIcon: ({focused, color, size}) => {
+const TabBarIcon = ({ route }) => ({
+  tabBarIcon: ({ focused, color, size }) => {
     let icon;
     switch (route.name) {
-      case 'DashBoardStack':
-        icon = focused ? Images.ic_dashboard : Images.ic_dashboard;
+      case "DashBoardStack":
+        icon = focused ? Images.ic_home_active : Images.ic_home_in;
         break;
-      case 'HistoryStack':
-        icon = focused ? Images.ic_setting : Images.ic_setting;
+      case "HistoryStack":
+        icon = focused ? Images.ic_history_active : Images.ic_history_in;
         break;
-      case 'FavoritesStack':
-        icon = focused ? Images.ic_term_condition : Images.ic_term_condition;
+      case "FavoritesStack":
+        icon = focused ? Images.ic_favorite_active : Images.ic_favorite_in;
         break;
-      case 'ProfileStack':
-        icon = focused ? Images.ic_profile : Images.ic_profile;
+      case "ProfileStack":
+        icon = focused ? Images.ic_user_active : Images.ic_user_in;
         break;
-      case 'LogoutStack':
-        icon = focused ? Images.ic_logout : Images.ic_logout;
-        break;
+      // case "LogoutStack":
+      //   icon = focused ? Images.ic_logout_active : Images.ic_logout_in;
+      //   break;
     }
     return (
       <Image
         resizeMode="contain"
         source={icon}
         style={{
-          width: Metrics.widthRatio(20),
+          width: Metrics.widthRatio(24),
           height: Metrics.heightRatio(20),
         }}
       />
@@ -90,110 +96,111 @@ const TabBarIcon = ({route}) => ({
   },
 });
 
-const DashBoardStack = ({navigation}) => (
+const DashBoardStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="Dashboard"
       component={Dashboard}
       options={{
-        title: 'Search',
+        title: "Search",
         ...defaultScreenOptions(),
       }}
     />
   </Stack.Navigator>
 );
 
-const HistoryStack = ({navigation}) => (
+const HistoryStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="History"
       component={History}
       options={{
-        title: 'History',
+        title: "History",
         ...defaultScreenOptions(),
       }}
     />
   </Stack.Navigator>
 );
 
-const FavoritesStack = ({navigation}) => (
+const FavoritesStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="Favorites"
       component={Favorites}
       options={{
-        title: 'Favorites',
+        title: "Favorites",
         ...defaultScreenOptions(),
       }}
     />
   </Stack.Navigator>
 );
 
-const ProfileStack = ({navigation}) => (
+const ProfileStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="Profile"
       component={Profile}
       options={{
-        title: 'Profile',
+        title: "Profile",
         ...defaultScreenOptions(),
       }}
     />
   </Stack.Navigator>
 );
 
-const LogoutStack = ({navigation}) => (
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Logout"
-      component={Logout}
-      options={{
-        headerShown: false,
-      }}
-    />
-  </Stack.Navigator>
-);
+// const LogoutStack = ({ navigation }) => (
+//   <Stack.Navigator>
+//     <Stack.Screen
+//       name="Logout"
+//       component={Logout}
+//       options={{
+//         headerShown: false,
+//       }}
+//     />
+//   </Stack.Navigator>
+// );
 
 export default BottomTab = () => (
   <Tab.Navigator
     initialRouteName="DashBoardStack"
-    backBehavior={'initialRoute'}
+    backBehavior={"initialRoute"}
     screenOptions={TabBarIcon}
-    tabBarOptions={tabBarOptions()}>
+    tabBarOptions={tabBarOptions()}
+  >
     <Tab.Screen
       name="DashBoardStack"
       component={DashBoardStack}
       options={{
-        tabBarLabel: 'Search',
+        tabBarLabel: "Search",
       }}
     />
     <Tab.Screen
       name="HistoryStack"
       component={HistoryStack}
       options={{
-        tabBarLabel: 'History',
+        tabBarLabel: "History",
       }}
     />
     <Tab.Screen
       name="FavoritesStack"
       component={FavoritesStack}
       options={{
-        tabBarLabel: 'Favorites',
+        tabBarLabel: "Favorites",
       }}
     />
     <Tab.Screen
       name="ProfileStack"
       component={ProfileStack}
       options={{
-        tabBarLabel: 'Profile',
+        tabBarLabel: "Profile",
       }}
     />
-    <Tab.Screen
+    {/*<Tab.Screen
       name="LogoutStack"
       component={LogoutStack}
       options={{
-        tabBarLabel: '',
+        tabBarLabel: "",
       }}
-    />
+    />*/}
   </Tab.Navigator>
 );

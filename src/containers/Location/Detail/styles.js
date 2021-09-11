@@ -7,9 +7,10 @@ const styles = StyleSheet.create({
   },
   contentSec: {
     backgroundColor: Colors.primary.white,
+    width: "100%",
     height: "100%",
     paddingTop: Metrics.baseMargin,
-    alignItems: "center",
+
     paddingHorizontal: Metrics.baseMargin,
   },
   historyItemSec: {
@@ -24,13 +25,10 @@ const styles = StyleSheet.create({
     color: Colors.primary.white,
   },
   title: {
-    fontSize: Metrics.doubleBaseMargin,
-    color: Colors.secondary.lOrange,
-    marginBottom: Metrics.baseMargin,
+    ...AppStyles.gbBold(22, Colors.secondary.lOrange),
   },
   address: {
-    fontSize: Metrics.baseMargin,
-    color: Colors.lightGray,
+    ...AppStyles.gbRe(14, Colors.xGray),
     marginBottom: Metrics.xGray,
   },
   linkTxt: {
@@ -38,12 +36,23 @@ const styles = StyleSheet.create({
     color: Colors.secondary.linkColor,
     marginBottom: Metrics.xGray,
   },
+  mgContainer: {
+    // flexDirection: "row",
+    // alignItems: "center",
+    // paddingHorizontal: Metrics.baseMargin,
+    marginBottom: Metrics.baseMargin,
+  },
+  mgHo: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: Metrics.smallMargin,
+  },
   mgHorizontal: {
-    marginHorizontal: Metrics.doubleBaseMargin,
+    marginLeft: Metrics.baseMargin,
   },
   mapImg: {
-    width: Metrics.screenWidth,
-    height: Metrics.screenHeight / 2,
+    width: Metrics.screenWidth - Metrics.doubleBaseMargin,
+    height: Metrics.heightRatio(200),
   },
   historyItemDesc: {
     color: Colors.primary.white,

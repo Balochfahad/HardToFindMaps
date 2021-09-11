@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import {
   View,
   Image,
@@ -10,28 +10,28 @@ import {
   Text,
   ActivityIndicator,
   ImageBackground,
-} from 'react-native';
-import {USER, DUMP} from '../../actions/ActionTypes';
-import constant from '../../constants';
-import utility from '../../utility';
-import {NavigationContext} from '@react-navigation/native';
-import {push} from '../../services/NavigationService';
-import {LoginContext} from '../../';
-import {SafeAreaConsumer} from 'react-native-safe-area-context';
-import {connect} from 'react-redux';
+} from "react-native";
+import { USER, DUMP } from "../../actions/ActionTypes";
+import constant from "../../constants";
+import utility from "../../utility";
+import { NavigationContext } from "@react-navigation/native";
+import { push } from "../../services/NavigationService";
+import { LoginContext } from "../../";
+import { SafeAreaConsumer } from "react-native-safe-area-context";
+import { connect } from "react-redux";
 import {
   TextFieldPlaceholder,
   FormHandler,
   AppTextButton,
   Header,
-} from '../../reuseableComponents';
-import {request} from '../../actions/ServiceAction';
-import {INPUT_TYPES} from '../../reuseableComponents/FormHandler/Constants';
-import HttpServiceManager from '../../services/HttpServiceManager';
-import styles from './styles';
-import AsyncStorage from '@react-native-community/async-storage';
-import {Images, Colors, AppStyles} from '../../theme';
-import {WithKeyboardListener} from '../../HOC';
+} from "../../reuseableComponents";
+import { request } from "../../actions/ServiceAction";
+import { INPUT_TYPES } from "../../reuseableComponents/FormHandler/Constants";
+import HttpServiceManager from "../../services/HttpServiceManager";
+import styles from "./styles";
+import AsyncStorage from "@react-native-community/async-storage";
+import { Images, Colors, AppStyles } from "../../theme";
+import { WithKeyboardListener } from "../../HOC";
 
 class Registeration extends Component {
   static contextType = NavigationContext;
@@ -53,7 +53,7 @@ class Registeration extends Component {
 
   onSubmit = (formData) => {
     let payload = {
-      token: 'U0FTQUlORk9URUNILUhBUkRUT0ZJTkRNQVBT',
+      token: "U0FTQUlORk9URUNILUhBUkRUT0ZJTkRNQVBT",
       name: formData.fullName,
       email: formData.email,
       password: formData.password,
@@ -61,44 +61,58 @@ class Registeration extends Component {
 
     this.props.request(
       constant.signUp,
-      'post',
+      "post",
       payload,
       DUMP,
       true,
       (success) => this.onSignUpSuccess(success),
-      this.onSignUpError,
+      this.onSignUpError
     );
   };
   onSignUpSuccess = (success) => {
-    console.log('success', success);
-    push('login');
+    console.log("success", success);
+    push("login");
   };
 
   onSignUpError = (error) => {
     if (error) {
-      utility.showFlashMessage('Login Failed', 'danger');
+      utility.showFlashMessage("Login Failed", "danger");
     }
   };
 
   render() {
-    const {is_visible} = this.state;
-    const {isKeyboardVisible, keyboardHeight, route} = this.props;
-    // console.log("secureTextEntry", is_visible, is_Role);
+    const { is_visible } = this.state;
+    const { isKeyboardVisible, keyboardHeight, route } = this.props;
+    console.log("isKeyboardVisible", keyboardHeight, isKeyboardVisible);
+
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          marginBottom:
+            isKeyboardVisible && utility.isPlatformAndroid()
+              ? keyboardHeight - 50
+              : 0,
+        }}
+      >
         <ScrollView
-          style={{flex: 1}}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{flexGrow: 1}}>
+        >
           <ImageBackground
             source={Images.loginBg}
             style={styles.image}
-            resizeMode="cover">
+            resizeMode="cover"
+          >
             <View style={styles.overlay}>
               <View>
                 <View style={styles.logoSec}>
-                  <Image style={styles.imgSec} source={Images.loginLogo} />
+                  <Image
+                    style={styles.imgSec}
+                    source={Images.loginLogo}
+                    resizeMode="contain"
+                  />
                   {/*<Text style={styles.topError}>
                     Incorrect username or password.
                   </Text>*/}
@@ -175,9 +189,9 @@ class Registeration extends Component {
   }
 }
 
-const actions = {request};
+const actions = { request };
 const mapStateToProps = ({}) => ({});
 export default connect(
   mapStateToProps,
-  actions,
+  actions
 )(WithKeyboardListener(Registeration));

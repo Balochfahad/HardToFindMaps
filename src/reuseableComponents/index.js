@@ -23,7 +23,13 @@ import AnimateDropDown from "./AnimateDropDown";
 import DrawerItem from "./DrawerItem";
 import BottomActionSheet from "./BottomActionSheet";
 import BottomTabs from "./BottomTabs";
+import ImageHandler from "./ImageHandler";
+import ImageViewer from "./ImageViewer";
+import Loader from "./Loader";
+import ImageZoomModal from "./ImageZoom";
 export {
+  ImageZoomModal,
+  Loader,
   MaterialTextField,
   AppButton,
   ButtonView,
@@ -42,4 +48,6 @@ export {
   DrawerItem,
   BottomActionSheet,
   BottomTabs,
+  ImageHandler,
+  ImageViewer,
 };

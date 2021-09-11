@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
     // height: Metrics.screenHeight / 2 + Metrics.xSmallMargin,
     // width: "75%",
     // height: 100,
+    width: Metrics.heightRatio(150),
+    height: Metrics.heightRatio(180),
   },
   buttonSec: {
     // backgroundColor: Colors.primary.white,
@@ -102,6 +104,15 @@ const styles = StyleSheet.create({
     borderRadius: Metrics.xxDoubleBaseMargin,
     width: "100%",
     fontWeight: "700",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+
+    elevation: 12,
   },
   fbButton: {
     width: Metrics.screenWidth / 3,

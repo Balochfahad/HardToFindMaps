@@ -12,6 +12,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: Metrics.baseMargin,
   },
+  historyItemSec: {
+    backgroundColor: Colors.secondary.pink,
+    marginBottom: Metrics.baseMargin,
+    borderRadius: Metrics.smallMargin,
+    padding: Metrics.baseMargin,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
+  },
+  historyItemTitle: {
+    ...AppStyles.gbBold(20, Colors.primary.white),
+  },
+  historyItemDesc: {
+    color: Colors.primary.white,
+  },
   favoriteItemSec: {
     backgroundColor: Colors.secondary.mBlue,
     width: "100%",

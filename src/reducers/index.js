@@ -5,8 +5,8 @@
 //  Created by Retrocube on 10/4/2019, 9:21:40 AM.
 //  Copyright © 2019 Retrocube. All rights reserved.
 //
-import {combineReducers} from 'redux';
-import serviceReducer from './serviceReducer';
+import { combineReducers } from "redux";
+import serviceReducer from "./serviceReducer";
 import {
   LOGIN,
   USER,
@@ -18,6 +18,7 @@ import {
   CUSTOMER_APPOINTMENT,
   INVOICE_PAY_CONFIRM,
   SIGNUP,
+  GET_HISTORY,
   MY_DAY,
   DUMP,
   SOCKET_INFO,
@@ -28,15 +29,19 @@ import {
   INVOICE_DETAIL,
   LOGOUT,
   MY_DAY_DETAIL,
+  GET_FAVORITES,
   SOCKET_DUMP,
+  ADD_HISTORY,
   RECENT_SERVICES_LIST,
   CARD_TYPES,
-} from '../actions/ActionTypes';
-import userLocation from '../reducers/userLocation';
+} from "../actions/ActionTypes";
+import userLocation from "../reducers/userLocation";
+import setHistory from "../reducers/setHistory";
 const appReducer = combineReducers({
   user: serviceReducer(USER),
   dump: serviceReducer(DUMP),
   location: serviceReducer(LOCATION),
+  get_history: serviceReducer(GET_HISTORY),
   user_payment_info: serviceReducer(USER_PAYMENT_INFO),
   invoice_list: serviceReducer(INVOICE_LIST),
   invoice_detail: serviceReducer(INVOICE_DETAIL),
@@ -48,17 +53,20 @@ const appReducer = combineReducers({
   customer_appointment: serviceReducer(CUSTOMER_APPOINTMENT),
   singupReducer: serviceReducer(SIGNUP),
   card_types: serviceReducer(CARD_TYPES),
+  add_history: serviceReducer(ADD_HISTORY),
+  get_favorites: serviceReducer(GET_FAVORITES),
   userLocation,
+  setHistory,
   recentServices: serviceReducer(RECENT_SERVICES_LIST),
 });
 
 const rootReducer = (state, action) => {
   const rootReducer = (state, action) => {
     if (action.type === LOGOUT) {
-      const {user, ...rest} = state;
+      const { user, ...rest } = state;
       state = {
         ...rest,
-        user: {...user, data: []},
+        user: { ...user, data: [] },
       };
     }
   };

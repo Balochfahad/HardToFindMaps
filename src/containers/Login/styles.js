@@ -1,12 +1,14 @@
-import {StyleSheet, Dimensions} from 'react-native';
-import {Colors, Metrics, AppStyles} from '../../theme';
-const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
+import { StyleSheet, Dimensions } from "react-native";
+import { Colors, Metrics, AppStyles } from "../../theme";
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
+  "window"
+);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.primary.white,
     // paddingTop: Metrics.baseMargin,
-    justifyContent: 'center',
+    justifyContent: "center",
     // alignItems: "center",
   },
   topError: {
@@ -23,13 +25,15 @@ const styles = StyleSheet.create({
     borderColor: Colors.gray,
   },
   logoSec: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     paddingBottom: Metrics.xxDoubleBaseMargin,
   },
   imgSec: {
     // height: Metrics.screenHeight / 2 + Metrics.xSmallMargin,
     // width: "75%",
+    width: Metrics.heightRatio(200),
+    height: Metrics.heightRatio(250),
     // height: 100,
   },
   selectedTab: {
@@ -59,23 +63,23 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   inputSec: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonSec1: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: Metrics.doubleBaseMargin,
   },
   buttonSec2: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   image: {
-    height: viewportHeight,
-    width: '100%',
-    justifyContent: 'center',
+    height: Metrics.screenHeight,
+    width: Metrics.screenWidth,
+    // justifyContent: "center",
   },
   overlay: {
-    backgroundColor: 'rgba(255,255,255,.5)',
+    backgroundColor: "rgba(255,255,255,.5)",
     height: viewportHeight,
     paddingTop: Metrics.xxxDoubleBaseMargin,
   },
@@ -85,8 +89,8 @@ const styles = StyleSheet.create({
     // fontWeight: "700",
   },
   submitBtn: {
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: "column",
+    justifyContent: "center",
     paddingHorizontal: Metrics.xxDoubleBaseMargin + Metrics.baseMargin,
     // marginTop: 30,
   },
@@ -94,25 +98,43 @@ const styles = StyleSheet.create({
     width: Metrics.screenWidth / 3,
     backgroundColor: Colors.secondary.btnColor,
     borderRadius: Metrics.xxDoubleBaseMargin,
-    width: '100%',
-    fontWeight: '700',
+    width: "100%",
+    fontWeight: "700",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+
+    elevation: 12,
   },
   fbButton: {
     width: Metrics.screenWidth / 3,
     backgroundColor: Colors.secondary.fbBtn,
     color: Colors.primary.white,
     borderRadius: Metrics.xxDoubleBaseMargin,
-    width: '100%',
-    fontWeight: '700',
+    width: "100%",
+    fontWeight: "700",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+
+    elevation: 12,
   },
   txtSec: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     paddingVertical: Metrics.baseMargin,
   },
   separatorTxt: {
     ...AppStyles.gbLight(16, Colors.primary.black),
-    fontWeight: '700',
+    fontWeight: "700",
   },
 });
 

@@ -74,6 +74,19 @@ export function requestAction(types) {
   };
 }
 
+export function updateAction(types, data) {
+  return {
+    data,
+    type: types.UPDATE,
+  };
+}
+export function deleteAction(types, data) {
+  return {
+    data,
+    type: types.DELETE,
+  };
+}
+
 export function success(types, data) {
   return {
     data,
@@ -85,6 +98,14 @@ export function failure(types, errorMessage) {
   return {
     errorMessage,
     type: types.FAILURE,
+  };
+}
+
+export function generalUpdate(type, data, meta = {}) {
+  return {
+    data,
+    type,
+    meta,
   };
 }
 export function logout() {

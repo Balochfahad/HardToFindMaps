@@ -14,14 +14,22 @@ const styles = StyleSheet.create({
   },
   historyItemSec: {
     backgroundColor: Colors.secondary.pink,
-    width: "100%",
     marginVertical: Metrics.baseMargin,
     borderRadius: Metrics.smallMargin,
     padding: Metrics.baseMargin,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
   },
   historyItemTitle: {
-    fontSize: 20,
-    color: Colors.primary.white,
+    flex: 1,
+    ...AppStyles.gbBold(20, Colors.primary.white),
   },
   historyItemDesc: {
     color: Colors.primary.white,

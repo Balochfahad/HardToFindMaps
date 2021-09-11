@@ -44,7 +44,7 @@ class SearchLocation extends Component {
   onInvoiceListRequest = () => {
     const { user } = this.props;
     this.props.request(
-      `${constant.invoice_list}?email=${user.email}`,
+      `${constant.location}?email=${user.email}`,
       "get",
       {},
       INVOICE_LIST,
@@ -85,7 +85,4 @@ const mapStateToProps = ({ user, invoice_list }) => ({
   user: user.data,
   invoice_list: invoice_list.data,
 });
-export default connect(
-  mapStateToProps,
-  actions
-)(SearchLocation);
+export default connect(mapStateToProps, actions)(SearchLocation);
