@@ -11,6 +11,7 @@ import {
   ActivityIndicator,
   ImageBackground,
 } from "react-native";
+import { Metrics } from "../../theme";
 import { USER, DUMP } from "../../actions/ActionTypes";
 import constant from "../../constants";
 import utility from "../../utility";
@@ -97,14 +98,19 @@ class Registeration extends Component {
         }}
       >
         <ScrollView
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
+           keyboardShouldPersistTaps="handled"
+           showsVerticalScrollIndicator={false}
+          //  contentContainerStyle={{ paddingBottom: 20 }}
         >
-          <ImageBackground
+           <ImageBackground
+            style={[styles.fixed, styles.imageContainter]}
+            source={Images.loginBg}
+        />
+          {/* <ImageBackground
             source={Images.loginBg}
             style={styles.image}
             resizeMode="cover"
-          >
+          > */}
             <View style={styles.overlay}>
               <View>
                 <View style={styles.logoSec}>
@@ -117,12 +123,18 @@ class Registeration extends Component {
                     Incorrect username or password.
                   </Text>*/}
                 </View>
-                <View style={styles.buttonSec}>
-                  <View style={styles.buttonSec1}>
+                <View style={styles.buttonSec1}>
                     <FormHandler ref={(ref) => (this.formHandler = ref)}>
                       <TextFieldPlaceholder
-                        label="Full Name"
-                        error="Full Name is required"
+                        label="First Name"
+                        error="First Name is required"
+                        type={INPUT_TYPES.TEXT}
+                        identifier="fullName"
+                        blurOnSubmit={false}
+                      />
+                      <TextFieldPlaceholder
+                        label="Last Name"
+                        error="Last Name is required"
                         type={INPUT_TYPES.TEXT}
                         identifier="fullName"
                         blurOnSubmit={false}
@@ -132,6 +144,25 @@ class Registeration extends Component {
                         error="Email is required"
                         type={INPUT_TYPES.EMAIL}
                         identifier="email"
+                        blurOnSubmit={false}
+                      />
+                      <TextFieldPlaceholder
+                        label="Mobile no"
+                        error="Mobile no is required"
+                        type={INPUT_TYPES.PHONE}
+                        identifier="email"
+                        blurOnSubmit={false}
+                      />
+                      <TextFieldPlaceholder
+                        label="Street Name"
+                        type={INPUT_TYPES.Text}
+                        identifier="street"
+                        blurOnSubmit={false}
+                      />
+                      <TextFieldPlaceholder
+                        label="Zipcode"
+                        type={INPUT_TYPES.TEXT}
+                        identifier="zip"
                         blurOnSubmit={false}
                       />
                       <TextFieldPlaceholder
@@ -171,7 +202,6 @@ class Registeration extends Component {
                       />
                     </FormHandler>
                   </View>
-                </View>
               </View>
               <View style={styles.submitBtn}>
                 <AppTextButton
@@ -182,7 +212,7 @@ class Registeration extends Component {
                 />
               </View>
             </View>
-          </ImageBackground>
+          {/* </ImageBackground> */}
         </ScrollView>
       </View>
     );

@@ -13,9 +13,11 @@ const styles = StyleSheet.create({
     // alignItems: "center",
   },
   image: {
-    height: viewportHeight,
+    // flex: 1,
+    height: "100%",
     width: "100%",
-    justifyContent: "center",
+    // justifyContent: "center",
+    // resizeMode: 'cover'
   },
   topError: {
     backgroundColor: Colors.primary.errorBg,
@@ -81,6 +83,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  imageContainter: {
+    width: Dimensions.get("window").width, //for full screen
+    height: "100%" //for full screen
+  },
+  fixed: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 10
+  },
   text: {
     ...AppStyles.gbLight(12, Colors.secondary.mixRed),
     marginLeft: Metrics.baseMargin,
@@ -88,8 +101,10 @@ const styles = StyleSheet.create({
   },
   overlay: {
     backgroundColor: "rgba(255,255,255,.5)",
-    height: viewportHeight,
+    // height: viewportHeight,
+    height: "100%",
     paddingTop: Metrics.xxxDoubleBaseMargin,
+    paddingBottom: Metrics.xxxDoubleBaseMargin,
   },
   submitBtn: {
     flexDirection: "column",

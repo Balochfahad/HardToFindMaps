@@ -27,6 +27,8 @@ import ImageHandler from "./ImageHandler";
 import ImageViewer from "./ImageViewer";
 import Loader from "./Loader";
 import ImageZoomModal from "./ImageZoom";
+import AppTabButton from "./AppTabButton";
+import TextfieldNoPlaceholder from "./TextfieldNoPlaceholder";
 export {
   ImageZoomModal,
   Loader,
@@ -50,4 +52,6 @@ export {
   BottomTabs,
   ImageHandler,
   ImageViewer,
+  AppTabButton,
+  TextfieldNoPlaceholder
 };

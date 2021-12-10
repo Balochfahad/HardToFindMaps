@@ -195,12 +195,12 @@ export default BottomTab = () => (
         tabBarLabel: "Profile",
       }}
     />
-    {/*<Tab.Screen
+    {/* <Tab.Screen
       name="LogoutStack"
       component={LogoutStack}
       options={{
         tabBarLabel: "",
       }}
-    />*/}
+    /> */}
   </Tab.Navigator>
 );

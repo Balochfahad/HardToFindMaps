@@ -78,6 +78,7 @@ const home_in = require("../assets/icons/menu_d/home_in.png");
 
 const m_dashboard = require("../assets/icons/m_drawer/dashboard.png");
 const m_logout = require("../assets/icons/m_drawer/logout.png");
+const m_logout_white = require("../assets/icons/m_drawer/logout-white.png");
 const m_profile = require("../assets/icons/m_drawer/profile.png");
 const m_setting = require("../assets/icons/m_drawer/setting.png");
 const m_term = require("../assets/icons/m_drawer/term.png");
@@ -148,4 +149,5 @@ export default {
   ic_add,
   c_left,
   c_right,
+  m_logout_white
 };

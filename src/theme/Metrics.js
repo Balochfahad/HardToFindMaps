@@ -59,6 +59,9 @@ export default {
   xDoubleBaseMargin: heightRatio(32),
   xxDoubleBaseMargin: heightRatio(40),
   xxxDoubleBaseMargin: heightRatio(50),
+  xxxxDoubleBaseMargin: heightRatio(60),
+  xxxxxDoubleBaseMargin: heightRatio(100),
+  extraxxDoubleBaseMargin: heightRatio(150),
   horizontalLineHeight: heightRatio(1),
 
   statusBarHeight: STATUSBAR_HEIGHT,

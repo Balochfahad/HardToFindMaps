@@ -25,7 +25,7 @@ class DrawerItem extends PureComponent {
     super(props);
     this.state = {
       isModalVisible: false,
-      anime: new Animated.Value(0),
+      // anime: new Animated.Value(0),
     };
   }
 

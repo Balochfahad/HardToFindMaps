@@ -5,6 +5,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.primary.white,
+    marginBottom: 0,
+    paddingBottom: 0
+  },
+  tabsSection:{
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  tabBtnSec:{
+    flex: 1,
+  },
+  tabButton:{
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  activeTab: {
+    backgroundColor: Colors.secondary.btnColor,
+    color: Colors.primary.white,
+  },
+  notActiveTab: {
+    backgroundColor: Colors.cGray,
+    color: Colors.primary.black,
   },
   topNav: {
     borderBottomWidth: 1,
@@ -63,11 +85,12 @@ const styles = StyleSheet.create({
   buttonSec: {
     backgroundColor: "#fff",
     position: "relative",
-    top: -20,
+    // top: -20,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     paddingHorizontal: 15,
     paddingTop: Metrics.xxxDoubleBaseMargin,
+    paddingBottom: 20,
     height: "100%",
   },
   textSec: {
@@ -95,30 +118,7 @@ const styles = StyleSheet.create({
     width: 200,
     borderRadius: 20,
   },
-  button2: {
-    width: 200,
-    paddingHorizontal: 10,
-    textAlign: "center",
-    paddingVertical: 4,
-    borderRadius: 20,
-    marginTop: 15,
-    borderColor: "#fa9572",
-    backgroundColor: "#fff",
-    fontWeight: "400",
-    borderWidth: 1,
-    color: "#000",
-  },
-  button3: {
-    width: 300,
-    flexDirection: "row",
-    borderRadius: 25,
-    alignItems: "center",
-    backgroundColor: "#eee",
-    borderColor: "#eee",
-    paddingHorizontal: 22,
-    paddingVertical: 15,
-    marginVertical: 10,
-  },
+
   btnText: {
     flex: 1,
     color: "#777",
@@ -138,6 +138,24 @@ const styles = StyleSheet.create({
   icons: {
     fontSize: 15,
   },
+  // historyItemSec: {
+  //   backgroundColor: Colors.secondary.pink,
+  //   marginBottom: Metrics.baseMargin,
+  //   borderRadius: Metrics.doubleBaseMargin,
+  //   padding: Metrics.baseMargin,
+  //   shadowColor: "#000",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 1,
+  //   },
+  //   shadowOpacity: 0.22,
+  //   shadowRadius: 2.22,
+
+  //   elevation: 3,
+  // },
+  // historyItemDesc: {
+  //   // color: Colors.primary.white
+  // },
   inputSec: {
     marginBottom: 20,
     alignItems: "center",
@@ -151,6 +169,75 @@ const styles = StyleSheet.create({
     alignItems: "center",
     // color: '#000000',
   },
+  settingsSec:{
+    backgroundColor: Colors.primary.white,
+    height: "100%",
+    paddingHorizontal: 20,
+    paddingTop: 20
+  },
+  logoutSec:{
+    flex: 1
+  },
+  logoutSecBtn:{
+    backgroundColor: Colors.secondary.lRed,
+    width: 200,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  logoutTxt:{
+    // flex:2,
+    marginLeft: 10,
+    fontSize: 18,
+    color: Colors.primary.white
+  },
+  logoutIcon:{
+    // flex:1,
+    resizeMode: 'contain'
+  },
+  simpleInpt:{
+    backgroundColor: 'transparent',
+    borderColor: "transparent",
+    // borderBottomWidth: 1,
+    // borderBottomColor: "#eee",
+    borderRadius: 0,
+    width: 100,
+  },
+  inputFieldSec:{
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent:"center",
+    marginHorizontal: 20,
+    paddingHorizontal: 10,
+    marginBottom: 20,
+    flex: 1,
+    justifyContent:"flex-end",
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
+    height: 50
+  },
+  label:{
+    fontSize: 17,
+    fontWeight: "700",
+    color: Colors.xGray,
+    flex: 1,
+    justifyContent:"flex-start",
+  },
+  profilePicSec:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 15,
+  },
+  profilePic:{
+    borderWidth: 3,
+    borderColor: Colors.secondary.btnColor,
+    borderRadius: 40,
+    width: 80,
+    height: 80,
+  }
 });
 
 export default styles;
